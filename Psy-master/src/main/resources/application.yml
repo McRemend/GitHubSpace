@@ -1,0 +1,38 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: com.demo.entity
+  mapperLocations: classpath:mapper/*.xml
+
+
+---
+
+#开发配置
+spring:
+  profiles: dev
+  mvc:
+    view:
+      prefix: /static/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://localhost:3306/psydb
+    username: root
+    password: wangchen644759   
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall,log4j
+    logSlowSql: true
